@@ -1,0 +1,33 @@
+spring.application.name: front
+
+# Management
+management:
+  context-path: /manage
+
+# Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:63tfy9ZxGMIocMt2Yy@localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    status-page-url.path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+
+# The client defined in accounts, that is going to access the accounts app
+security.oauth2:
+  client:
+    access-token-uri: http://localhost:8899/oauth/token
+    user-authorization-uri: http://localhost:8899/oauth/authorize
+    client-id: front
+    client-secret: pshgpMItylY04IEOglLzy38R51ZoAh8qc4Iayv3665CImEyD6wBJ7bJqpNdCRxU0
+  resource:
+    id: openid
+    service-id: ${PREFIX:}resource
+    jwt.key-value: YpVxuuGlGjwbCzVzLu63tfy9ZxGMIocMt2YymTr58mukDuio9978a6sMCIFMbVbM
+
+# Proxy
+zuul:
+  prefix: /proxy
