@@ -1,0 +1,62 @@
+spring.application.name: accounts
+
+# Logging
+logging.level:
+  org.springframework.data.document.mongodb: DEBUG
+  org.springframework.data.auditing: DEBUG
+  org.springframework.security: DEBUG
+  org.springframework.social: DEBUG
+
+  se.radley: DEBUG
+
+# Application
+
+# Java comes with a default maximum strength of 128 bits.
+# What you need is a set of files called Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files and is currently available at the Java SE download page. This zip file contains a couple of policy jars, which you need copy over the top of the ones already in the {java.home}/jre/lib/security directory of your JRE.
+# http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+# This will let you change the key strength above 128 bits
+# If you get problems with
+application.secret: AD4B0E251726A3A85C7A4A0A417986ADD73D5F9EBCA988E6B1B3958CC73B51BF
+
+# Management
+management:
+  context-path: /manage
+
+# Server
+# Same port as cloud foundry
+server.port: 8899
+
+# Mvc
+spring.jackson:
+  mapper.default-view-inclusion: false
+  deserialization.fail-on-unknown-properties: false
+
+# MongoDB (MongoProperties)
+spring.data.mongodb.uri: mongodb://localhost/springoauthsocialmicroservices
+
+# Security
+# Secret key used to encrypt jwt
+jwt.key: YpVxuuGlGjwbCzVzLu63tfy9ZxGMIocMt2YymTr58mukDuio9978a6sMCIFMbVbM
+
+# Social
+spring.social:
+  facebook:
+    app-id: 110430389137508
+    app-secret: 4ee25ae3c87aa1505fac44b2eb2fcead
+
+facebook.app-namespace: radley
+
+# Eureka Server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:63tfy9ZxGMIocMt2Yy@localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    status-page-url.path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health
+    #metadata-map:
+    #  password: ${security.user.password}
