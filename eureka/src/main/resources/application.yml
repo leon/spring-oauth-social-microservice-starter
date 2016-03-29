@@ -1,0 +1,17 @@
+# Server
+server:
+  port: 8761
+
+# Security (Basic Auth)
+security:
+  user:
+    name: eureka
+    password: 63tfy9ZxGMIocMt2Yy
+
+# Eureka Server
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    wait-time-in-ms-when-sync-empty: 0
